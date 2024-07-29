@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Pet {	
+public class PetVO {	
 
 	private int petNo;
 	private int userNo;

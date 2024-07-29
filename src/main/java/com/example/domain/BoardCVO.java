@@ -5,13 +5,13 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Board {
+public class BoardCVO {
 	
+	private int commentNo;
 	private int articleNo;
 	private int userNo;
-	private String title;
+	private String comment;
 	private Date createdAt;
-	private String content;
-	private int myHosNo;
+	
 
 }

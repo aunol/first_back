@@ -3,7 +3,7 @@ package com.example.domain;
 import lombok.Data;
 
 @Data
-public class Chatadd {
+public class ChataddVO {
 	
 	private int chataddNo;
 	private int userNo;

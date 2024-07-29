@@ -13,7 +13,7 @@ public class UserVO {
 	private String password;
 	private String email;
 	private Date createDate;
-	private String Loc;
+	private String userLoc;
 	private Date lastLogin;
 	private int failCount;
 	private int failNum;

@@ -2,25 +2,24 @@ package com.example.controller;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.annotation.RequestScope;
 
+import com.example.domain.HospitalVO;
 import com.example.domain.UserVO;
 import com.example.service.EmailService;
+import com.example.service.HospitalService;
 import com.example.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @CrossOrigin(origins="http://localhost:3000")
@@ -33,7 +32,29 @@ public class TestController {
     @Autowired
     private EmailService emailService;
     
+    @Autowired
+    private HospitalService hospitalService;
     
+
+    // 병원리스트 불러오기
+    @GetMapping("/hospitals")
+    public List<HospitalVO> hospitalList() {
+        System.out.println("/hospitals ");
+        List<HospitalVO> hospitals = hospitalService.hospitalList();
+        System.out.println("hospitalList 호출: " + hospitals);
+        return hospitals;
+    }
+
+    
+
+
+
+
+
+
+
+
+
     // 아이디, 이메일, 닉네임 중복 체크
     @RequestMapping("/checkDuplicate")
     public ResponseEntity<Map<String, Boolean>> checkDuplicate(@RequestBody Map<String, String> request) {
@@ -98,6 +119,7 @@ public class TestController {
             response.put("UserNo", String.valueOf(result.getUserNo()));
             response.put("UserId", result.getUserId());
             response.put("UserName", result.getUserName());
+            response.put("UserLoc", result.getUserLoc());
             return response;
         } else {
             response.put("message", "아이디 혹은 비밀번호를 확인해주세요.");

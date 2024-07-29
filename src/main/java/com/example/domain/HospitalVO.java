@@ -3,7 +3,7 @@ package com.example.domain;
 import lombok.Data;
 
 @Data
-public class Hospital {
+public class HospitalVO {
 	
 	private int hospitalNo;
 	private String hospitalName;
@@ -13,7 +13,7 @@ public class Hospital {
 	private String hospitalSpecies;
 	private String hospitalType;
 	private String hospitalLati;
-	private String hospitalLongti;
+	private String hospitalLongi;
 	
 
 }

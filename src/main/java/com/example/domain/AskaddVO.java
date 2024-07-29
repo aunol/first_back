@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Askadd {
+public class AskaddVO {
 	
 	private int myHosNo;
 	private int friendNo;
