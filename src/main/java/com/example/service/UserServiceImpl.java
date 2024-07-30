@@ -2,12 +2,11 @@ package com.example.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.dao.UserDAO;
 import com.example.domain.UserVO;
 
-import jakarta.servlet.http.HttpSession;
+
 
 @Service
 public class UserServiceImpl implements UserService {

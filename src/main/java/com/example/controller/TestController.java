@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,20 +13,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.HospitalVO;
+import com.example.domain.PetVO;
 import com.example.domain.UserVO;
 import com.example.service.EmailService;
 import com.example.service.HospitalService;
+import com.example.service.PetService;
 import com.example.service.UserService;
+
 
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 public class TestController {
 
+
+    // 오토와이어
     @Autowired
     private UserService userService;
     
@@ -34,7 +41,16 @@ public class TestController {
     
     @Autowired
     private HospitalService hospitalService;
+
+    @Autowired
+    private PetService petService;
     
+
+
+
+
+///////////////////////////////////////              /로직
+
 
     // 병원리스트 불러오기
     @GetMapping("/hospitals")
@@ -45,6 +61,43 @@ public class TestController {
         return hospitals;
     }
 
+
+
+
+
+////////////////////////////////////////////       / 펫 관련    
+    // 펫 리스트
+    @GetMapping("/petList")
+    public List<PetVO> petList(@Param("userNo") int userNo){
+    	System.out.println("/petList");
+    	List<PetVO> petList = petService.petList(userNo);
+    	System.out.println("petList 호출" + petList);
+    	return petList;
+    }
+    
+    // 펫 생성
+    @PostMapping("/createPet")
+    public void createPet(@RequestBody PetVO vo) {
+        System.out.println("자료확인 : " + vo.toString());
+        petService.createPet(vo);
+    }
+    
+    // 펫 수정
+    @PostMapping("")
+    
+    
+    // 펫 삭제
+    
+    
+    
+
+    
+
+//    @GetMapping("/${userNumber}")
+//    public String getMethodName(@RequestParam String param) {
+//        return new String();
+//    }
+//    
     
 
 
@@ -105,11 +158,12 @@ public class TestController {
     	
         System.out.println(vo.toString());
         
-        // 클라이언트로 보내는 메세지
+        // 클라이언트로 보내는 메세지, 아이디 정보
         Map<String, String> response = new HashMap<>();
         
         // 사용자 인증
         UserVO result = userService.loginCheck(vo);
+
         if (result == null) {
             response.put("message", "아이디 혹은 비밀번호를 확인해주세요.");            
             return response;
@@ -120,6 +174,7 @@ public class TestController {
             response.put("UserId", result.getUserId());
             response.put("UserName", result.getUserName());
             response.put("UserLoc", result.getUserLoc());
+            
             return response;
         } else {
             response.put("message", "아이디 혹은 비밀번호를 확인해주세요.");
