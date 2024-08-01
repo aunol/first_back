@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.domain.UserVO;
 
@@ -27,5 +28,13 @@ public interface UserDAO {
     
     @Select("SELECT * FROM user WHERE email = #{email}")
     UserVO mailCheck(String email);
+
+    @Select("SELECT COUNT(*) FROM user WHERE userId = #{userId} AND password = #{currentPassword}")
+    int passwordCheck(String userId, String currentPassword);
+
+
+    @Update("UPDATE user SET password = #{newPassword} WHERE userId = #{userId} AND password = #{currentPassword}")
+    void changePassword(String userId, String currentPassword, String newPassword);
+    
 
 }

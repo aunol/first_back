@@ -10,6 +10,8 @@ public interface UserService {
 	boolean addUser(UserVO vo);
 	UserVO loginCheck(UserVO vo);
 	UserVO mailCheck(String email);
+	int passwordCheck(String userId, String currentPassword);
+	void changePassword(String userId, String currentPassword, String newPassword);
 	
 	
 	

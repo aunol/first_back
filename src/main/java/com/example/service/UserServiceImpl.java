@@ -44,6 +44,16 @@ public class UserServiceImpl implements UserService {
     public UserVO mailCheck(String email) {
     	return userDAO.mailCheck(email);
     }
+
+    @Override
+    public int passwordCheck(String userId, String currentPassword) {
+        return userDAO.passwordCheck(userId, currentPassword);
+    }
+
+    @Override
+    public void changePassword(String userId, String currentPassword, String newPassword) {
+        userDAO.changePassword(userId, currentPassword, newPassword);
+    }
     
     
     

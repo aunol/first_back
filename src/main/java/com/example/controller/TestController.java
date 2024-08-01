@@ -80,14 +80,23 @@ public class TestController {
     public void createPet(@RequestBody PetVO vo) {
         System.out.println("자료확인 : " + vo.toString());
         petService.createPet(vo);
+        
     }
     
-    // 펫 수정
-    @PostMapping("")
+    //펫 수정
+    @PostMapping("/updatePet")
+    public void updatePet(@RequestBody PetVO vo) {
+    	System.out.println("fix Check : " + vo.toString());
+    	petService.updatePet(vo);
+    }
     
     
     // 펫 삭제
-    
+    @PostMapping("/deletePet")
+    public void deletePet(@RequestBody PetVO vo) {
+    	System.out.println("del Check : " + vo.toString());
+    	petService.deletePet(vo);
+    }
     
     
 
@@ -205,6 +214,33 @@ public class TestController {
     	    
     	return response;
     }
+
+    //비밀번호 변경
+    @PostMapping("/changePassword")
+    public Map <String,String> changePassword(
+    @RequestParam String userId, 
+    @RequestParam String currentPassword, 
+    @RequestParam String newPassword) {
+
+    System.out.println("changePassword Check : " + userId + " " + currentPassword + " " + newPassword);
+    
+    Map<String, String> response = new HashMap<>();
+    int result = userService.passwordCheck(userId, currentPassword);
+    System.out.println(result);
+
+    if (result > 0) {
+        // 현재 비밀번호가 맞는 경우 비밀번호 변경
+        userService.changePassword(userId, currentPassword, newPassword);
+        response.put("message", "success");
+        
+    } else {
+        // 현재 비밀번호가 틀린 경우
+        response.put("message", "fail");
+    }
+    return response;
+     
+}
+
     
     
     
