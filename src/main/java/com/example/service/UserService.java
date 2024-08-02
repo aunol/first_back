@@ -12,7 +12,8 @@ public interface UserService {
 	UserVO mailCheck(String email);
 	int passwordCheck(String userId, String currentPassword);
 	void changePassword(String userId, String currentPassword, String newPassword);
-	
+	void titleFix(String userId, String newTitle);
+	void updateLoc(String userNo, String newLoc);
 	
 	
 

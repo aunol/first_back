@@ -36,5 +36,10 @@ public interface UserDAO {
     @Update("UPDATE user SET password = #{newPassword} WHERE userId = #{userId} AND password = #{currentPassword}")
     void changePassword(String userId, String currentPassword, String newPassword);
     
-
+    @Update("UPDATE user SET title = #{newTitle} WHERE userId = #{userId}")
+    void titleFix(String userId, String newTitle);
+    
+    @Update("UPDATE user SET userLoc = #{newLoc} WHERE userNo = #{userNo}")
+    void updateLoc(String userNo, String newLoc);
+    
 }

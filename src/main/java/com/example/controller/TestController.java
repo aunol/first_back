@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.HospitalVO;
 import com.example.domain.PetVO;
+import com.example.domain.PostVO;
 import com.example.domain.UserVO;
 import com.example.service.EmailService;
 import com.example.service.HospitalService;
 import com.example.service.PetService;
+import com.example.service.PostService;
 import com.example.service.UserService;
 
 
@@ -45,6 +47,8 @@ public class TestController {
     @Autowired
     private PetService petService;
     
+    @Autowired
+    private PostService postService;  
 
 
 
@@ -183,6 +187,8 @@ public class TestController {
             response.put("UserId", result.getUserId());
             response.put("UserName", result.getUserName());
             response.put("UserLoc", result.getUserLoc());
+            response.put("UserTitle", result.getTitle());
+            System.out.println(result);
             
             return response;
         } else {
@@ -217,31 +223,55 @@ public class TestController {
 
     //비밀번호 변경
     @PostMapping("/changePassword")
-    public Map <String,String> changePassword(
-    @RequestParam String userId, 
-    @RequestParam String currentPassword, 
-    @RequestParam String newPassword) {
-
-    System.out.println("changePassword Check : " + userId + " " + currentPassword + " " + newPassword);
-    
-    Map<String, String> response = new HashMap<>();
-    int result = userService.passwordCheck(userId, currentPassword);
-    System.out.println(result);
-
-    if (result > 0) {
-        // 현재 비밀번호가 맞는 경우 비밀번호 변경
-        userService.changePassword(userId, currentPassword, newPassword);
-        response.put("message", "success");
+    public void changePassword(
+        @RequestParam String userId, 
+        @RequestParam String currentPassword, 
+        @RequestParam String newPassword) {
+        System.out.println("changePassword Check : " + userId + currentPassword + newPassword);
         
-    } else {
-        // 현재 비밀번호가 틀린 경우
-        response.put("message", "fail");
+        userService.changePassword(userId, currentPassword, newPassword);
     }
-    return response;
-     
-}
-
+    //지역변경
+    @PostMapping("updateLoc")
+    public void updateLoc( 
+    		@RequestParam String userNo, 
+            @RequestParam String newLoc ) {
+    	System.out.println("자료 :" + userNo + newLoc);
+    	userService.updateLoc(userNo, newLoc);
+    	
+    	
+    }
     
+    // 타이틀변경
+    @PostMapping("/titleFix")
+    public void titleFix(@RequestParam String userId, @RequestParam String newTitle) {
+        System.out.println("요청: " + userId + " " + newTitle);
+       userService.titleFix(userId, newTitle);    
+        
+
+       
+    }
+    
+    /////////////////////////////////////  포스팅
+    
+    // 포스팅 추가
+    @PostMapping("/addPost")
+    public void addPost(@RequestBody Map<String, String> requestBody ) {
+    	System.out.println("갖고온거 "+requestBody);
+    	
+    	// Map에서 PostVO 객체로 변환
+        PostVO vo = new PostVO();
+        vo.setUserNo(Integer.parseInt(requestBody.get("userNo")));
+        vo.setTitle(requestBody.get("title"));
+        vo.setContent(requestBody.get("content"));
+        vo.setLoc(requestBody.get("userLoc")); // 필드 이름 수정
+        vo.setCategory(requestBody.get("category"));
+        
+        System.out.println("디비로보내는거"+vo);
+        // 서비스 호출
+        postService.addPost(vo);
+    }
+
     
     
     

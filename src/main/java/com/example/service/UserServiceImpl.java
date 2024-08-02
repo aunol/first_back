@@ -55,6 +55,16 @@ public class UserServiceImpl implements UserService {
         userDAO.changePassword(userId, currentPassword, newPassword);
     }
     
+    @Override
+    public void titleFix(String userId, String newTitle) {
+    	userDAO.titleFix(userId, newTitle);
+    }
+    
+    @Override
+    public void updateLoc(String userNo, String newLoc) {
+    	userDAO.updateLoc(userNo, newLoc);
+    }
+    
     
     
 }
