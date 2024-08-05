@@ -253,6 +253,22 @@ public class TestController {
     }
     
     /////////////////////////////////////  포스팅
+    // @GetMapping("/petList")
+    // public List<PetVO> petList(@Param("userNo") int userNo){
+    // 	System.out.println("/petList");
+    // 	List<PetVO> petList = petService.petList(userNo);
+    // 	System.out.println("petList 호출" + petList);
+    // 	return petList;
+    // }
+    // 포스팅 리스트가져오기
+    @GetMapping("/postList")
+    public List<PostVO> postList(@Param("userNo") int userNo) {
+        System.out.println("/postList 호출");
+        List<PostVO> postList = postService.postList(userNo);
+        System.out.println("postList 호출" + postList);
+        return postList;
+    
+    }
     
     // 포스팅 추가
     @PostMapping("/addPost")
@@ -272,9 +288,37 @@ public class TestController {
         postService.addPost(vo);
     }
 
+
+    /// 포스팅 수정
+    @PostMapping("/updatePost")
+    public void updatePost(@RequestBody PostVO vo){
+        System.out.println("updatePost 호출" + vo);
+        postService.updatePost(vo);
+    }
+
+    /// 포스팅 삭제
+    @PostMapping("/deletePost")
+    public void deletePost(@RequestBody PostVO vo) {
+        System.out.println("deletePost 호출" + vo);
+        postService.deletePost(vo);
+    }
     
     
-    
+    //    //펫 수정
+    //    @PostMapping("/updatePet")
+    //    public void updatePet(@RequestBody PetVO vo) {
+    //        System.out.println("fix Check : " + vo.toString());
+    //        petService.updatePet(vo);
+    //    }
+       
+       
+    //    // 펫 삭제
+    //    @PostMapping("/deletePet")
+    //    public void deletePet(@RequestBody PetVO vo) {
+    //        System.out.println("del Check : " + vo.toString());
+    //        petService.deletePet(vo);
+    //    }
+       
 
     
     
