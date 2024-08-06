@@ -15,6 +15,17 @@ public class BoardServiceImpl implements BoardService{
     @Autowired
     private BoardDAO boardDAO;
 
+
+    @Override
+    public List<BoardVO> boardingList() {
+        return boardDAO.boardingList();
+    }
+
+    @Override
+    public BoardVO boardDetail(int boardNo) {
+        return boardDAO.boardDetail(boardNo);
+    }
+
     @Override
 	public List<BoardVO> boardList(int userNo){
 		return boardDAO.boardList(userNo);

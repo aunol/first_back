@@ -15,6 +15,12 @@ public class PostServiceImpl implements PostService{
 	private PostDAO postDAO;
 	
 	@Override
+	public List<PostVO> postingList(){
+		return postDAO.postingList();
+	}
+
+
+	@Override
 	public void addPost(PostVO vo) {
 		System.out.println("디비 바로앞"+vo);
 		postDAO.addPost(vo);		

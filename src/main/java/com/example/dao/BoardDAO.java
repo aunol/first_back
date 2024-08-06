@@ -16,6 +16,14 @@ import com.example.domain.BoardVO;
 @Mapper
 public interface BoardDAO {
 
+	@Select("SELECT b.boardNo, b.userNo, b.title, b.content, b.imageUrl, b.category, b.createdAt, b.cnt, u.userName " +
+	"FROM board b " +
+	"JOIN user u ON b.userNo = u.userNo")
+	List<BoardVO> boardingList();
+
+	@Select("SELECT * FROM board WHERE boardNo = #{boardNo}")
+	BoardVO boardDetail(@Param("boardNo") int boardNo);
+
     @Select("SELECT * FROM board WHERE userNo = #{userNo}")
 	List<BoardVO> boardList(@Param("userNo") int userNo);
     

@@ -8,6 +8,7 @@ import com.example.domain.PostVO;
 
 public interface PostService {
 	
+	List<PostVO> postingList();
 	List<PostVO> postList(int userNo);
 	void addPost(PostVO vo);
 	void updatePost(PostVO vo);

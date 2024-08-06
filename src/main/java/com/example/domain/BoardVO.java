@@ -16,6 +16,6 @@ public class BoardVO {
     private LocalDateTime createdAt;
     private int cnt;
 
-	
+	private String userName;
 
 }
