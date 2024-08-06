@@ -15,6 +15,6 @@ public class PostVO {
 	 private String loc;
 	 private String category;
 	 private LocalDateTime createdAt;
-	 private LocalDateTime updatedAt;
+	 private int cnt;
 
 }

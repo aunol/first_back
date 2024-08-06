@@ -21,6 +21,8 @@ import com.example.domain.HospitalVO;
 import com.example.domain.PetVO;
 import com.example.domain.PostVO;
 import com.example.domain.UserVO;
+import com.example.domain.BoardVO;
+import com.example.service.BoardService;
 import com.example.service.EmailService;
 import com.example.service.HospitalService;
 import com.example.service.PetService;
@@ -46,6 +48,9 @@ public class TestController {
 
     @Autowired
     private PetService petService;
+
+    @Autowired
+    private BoardService boardService;
     
     @Autowired
     private PostService postService;  
@@ -253,13 +258,7 @@ public class TestController {
     }
     
     /////////////////////////////////////  포스팅
-    // @GetMapping("/petList")
-    // public List<PetVO> petList(@Param("userNo") int userNo){
-    // 	System.out.println("/petList");
-    // 	List<PetVO> petList = petService.petList(userNo);
-    // 	System.out.println("petList 호출" + petList);
-    // 	return petList;
-    // }
+  
     // 포스팅 리스트가져오기
     @GetMapping("/postList")
     public List<PostVO> postList(@Param("userNo") int userNo) {
@@ -303,6 +302,45 @@ public class TestController {
         postService.deletePost(vo);
     }
     
+    
+
+/////////////////////////////////////////////////
+
+
+    /// 게시물리스트
+    @GetMapping("/boardList")
+    public List<BoardVO> boardList(@Param("userNo") int userNo){
+        System.out.println("/boardList");
+        List<BoardVO> boardList = boardService.boardList(userNo);
+        System.out.println("boardList 호출" + boardList);
+        return boardList;      
+        }
+
+
+    /// 게시물추가
+    @PostMapping("/addBoard")
+    public void addBoard(@RequestBody BoardVO vo) {
+    	System.out.println("fix Check : " + vo.toString());
+        boardService.addBoard(vo);
+       }
+
+
+    /// 게시물수정
+   @PostMapping("/updateBoard")
+    public void updateBoard(@RequestBody BoardVO vo) {
+    	System.out.println("fix Check : " + vo.toString());
+        boardService.updateBoard(vo);
+       }
+
+
+    /// 게시물삭제
+    @PostMapping("/deleteBoard")
+    public void deleteBoard(@RequestBody BoardVO vo) {
+    	System.out.println("fix Check : " + vo.toString());
+        boardService.deleteBoard(vo);
+       }
+
+
     
     //    //펫 수정
     //    @PostMapping("/updatePet")
