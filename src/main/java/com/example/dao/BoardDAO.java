@@ -27,10 +27,10 @@ public interface BoardDAO {
     @Select("SELECT * FROM board WHERE userNo = #{userNo}")
 	List<BoardVO> boardList(@Param("userNo") int userNo);
     
-    @Insert("INSERT INTO board ( userNo, title, content, category ) VALUES ( #{userNo},#{title}, #{content}, #{category} ) ")
+    @Insert("INSERT INTO board ( userNo, title, content, category, imageUrl ) VALUES ( #{userNo},#{title}, #{content}, #{category}, #{imageUrl} ) ")
 	void addBoard(BoardVO vo);
 	
-	@Update("UPDATE board SET title = #{title}, content = #{content}, category = #{category} WHERE boardNo = #{boardNo}")
+	@Update("UPDATE board SET title = #{title}, content = #{content}, category = #{category}, imageUrl = #{imageUrl} WHERE boardNo = #{boardNo}")
 	void updateBoard(BoardVO vo);
 
 	@Delete("DELETE FROM board WHERE boardNo = #{boardNo}")

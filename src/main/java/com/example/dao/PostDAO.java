@@ -22,10 +22,10 @@ public interface PostDAO {
 	@Select("SELECT * FROM post WHERE userNo = #{userNo}")
 	List<PostVO> postList(@Param("userNo") int userNo);
 	
-	@Insert("INSERT INTO post ( userNo, title, content, category, loc ) VALUES ( #{userNo},#{title}, #{content}, #{category}, #{loc}  ) ")
+	@Insert("INSERT INTO post ( userNo, title, content, category, loc, imageUrl ) VALUES ( #{userNo},#{title}, #{content}, #{category}, #{loc} , #{imageUrl}  ) ")
 	void addPost(PostVO vo);
 	
-	@Update("UPDATE post SET title = #{title}, content = #{content}, category = #{category} WHERE postNo = #{postNo}")
+	@Update("UPDATE post SET title = #{title}, content = #{content}, category = #{category} , imageUrl = #{imageUrl} WHERE postNo = #{postNo}")
 	void updatePost(PostVO vo);
 
 	@Delete("DELETE FROM post WHERE postNo = #{postNo}")
