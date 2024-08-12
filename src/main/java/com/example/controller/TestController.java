@@ -43,7 +43,7 @@ import com.example.service.UserService;
 
 
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://223.130.154.211:3000")
 @RestController
 public class TestController {
 
@@ -71,7 +71,7 @@ public class TestController {
     
 
     ////윈도우 파일 저장 경로 지정 (컨트롤러에서 직접 지정)
-    private final String imageDirectory = "C:/Users/ict03_023/Pictures/uploads/post/";
+    private final String imageDirectory = "/root/downloads/img/";
     
     
     
@@ -256,7 +256,7 @@ public class TestController {
         userService.changePassword(userId, currentPassword, newPassword);
     }
     //지역변경
-    @PostMapping("updateLoc")
+    @PostMapping("/updateLoc")
     public void updateLoc( 
     		@RequestParam String userNo, 
             @RequestParam String newLoc ) {
