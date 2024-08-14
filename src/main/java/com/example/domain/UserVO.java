@@ -20,6 +20,9 @@ public class UserVO {
 	private int failNum;
 	private Date failDate;
 	private Date lastTry;
+	private String friends;
+	private String userBlock;
+		
 	
 		
 
