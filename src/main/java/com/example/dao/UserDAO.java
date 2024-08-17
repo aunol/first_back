@@ -83,7 +83,8 @@ public interface UserDAO {
     void acceptFriendReverse(int fromNo, int toNo);
     
     @Delete("DELETE FROM postOffice WHERE postOfficeNo = #{postOfficeNo} ")
-	void removeNoti(int postOfficeNo);
+	  void removeNoti(int postOfficeNo);
 
+    
     
 }

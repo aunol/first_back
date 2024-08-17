@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.UserDAO;
+import com.example.domain.BoardVO;
 import com.example.domain.FriendsVO;
 import com.example.domain.PostOfficeVO;
+import com.example.domain.PostVO;
 import com.example.domain.UserVO;
 
 
@@ -126,6 +128,10 @@ public class UserServiceImpl implements UserService {
     public void removeNoti(int postOfficeNo) {
     	userDAO.removeNoti(postOfficeNo);
     }
+
+
+
+    
     
     
     

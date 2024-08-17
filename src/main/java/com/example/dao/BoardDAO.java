@@ -13,6 +13,7 @@ import com.example.domain.BoardVO;
 
 
 
+
 @Mapper
 public interface BoardDAO {
 
@@ -36,6 +37,8 @@ public interface BoardDAO {
 	@Delete("DELETE FROM board WHERE boardNo = #{boardNo}")
 	void deleteBoard(BoardVO vo);
 
+	@Select("SELECT * FROM board WHERE userNo = #{relatedUserNo}")
+	List<BoardVO> friendBoards(@Param("relatedUserNo") int relatedUserNo);
 
 
 }

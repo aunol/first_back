@@ -41,4 +41,9 @@ public class PostServiceImpl implements PostService{
 		postDAO.deletePost(vo);
 	}
 
+	@Override
+    public List<PostVO> friendPosts(int relatedUserNo){
+        return postDAO.friendPosts(relatedUserNo);
+    }
+
 }

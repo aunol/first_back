@@ -2,8 +2,10 @@ package com.example.service;
 
 import java.util.List;
 
+import com.example.domain.BoardVO;
 import com.example.domain.FriendsVO;
 import com.example.domain.PostOfficeVO;
+import com.example.domain.PostVO;
 import com.example.domain.UserVO;
 
 
@@ -31,6 +33,7 @@ public interface UserService {
 	void acceptFriend(int fromNo, int toNo);
 	void acceptFriendReverse(int fromNo, int toNo);
 	void removeNoti(int postOfficeNo);
+	
 	
 	
 	

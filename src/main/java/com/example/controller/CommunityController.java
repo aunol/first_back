@@ -80,6 +80,23 @@ public class CommunityController {
     	return friend;
     }
 
+    @GetMapping("friendPosts")
+    public List<PostVO> friendPosts(@Param("relatedUserNo") int relatedUserNo){
+        System.out.println(relatedUserNo + "친구포스트");
+        List<PostVO> friendPosts = postService.friendPosts(relatedUserNo);
+        System.out.println(friendPosts);
+        return friendPosts;
+    }
+
+    @GetMapping("friendBoards")
+    public List<BoardVO> friendBoards(@Param("relatedUserNo") int relatedUserNo){
+        System.out.println(relatedUserNo + "친구보드");
+         List<BoardVO> friendBoards = boardService.friendBoards(relatedUserNo);
+         System.out.println(friendBoards);
+         return friendBoards;
+    }
+
+
 
 
 

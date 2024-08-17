@@ -30,6 +30,9 @@ public interface PostDAO {
 
 	@Delete("DELETE FROM post WHERE postNo = #{postNo}")
 	void deletePost(PostVO vo);
+
+	@Select("SELECT * FROM post WHERE userNo = #{relatedUserNo}")
+	List<PostVO> friendPosts(@Param("relatedUserNo") int relatedUserNo);
 	
 
 }

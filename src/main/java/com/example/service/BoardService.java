@@ -12,5 +12,5 @@ public interface BoardService {
     void addBoard(BoardVO vo);
     void updateBoard(BoardVO vo);
     void deleteBoard(BoardVO vo);
-    
+    List<BoardVO> friendBoards(int relatedUserNo);
 }

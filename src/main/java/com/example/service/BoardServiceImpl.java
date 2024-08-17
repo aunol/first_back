@@ -45,4 +45,10 @@ public class BoardServiceImpl implements BoardService{
     public void deleteBoard(BoardVO vo) {
         boardDAO.deleteBoard(vo);
     }
+
+    @Override
+	public List<BoardVO> friendBoards(int relatedUserNo){
+        return boardDAO.friendBoards(relatedUserNo);
+    }
+
 }
