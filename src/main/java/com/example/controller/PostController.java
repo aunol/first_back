@@ -38,7 +38,7 @@ public class PostController {
 	
 	
 ////윈도우 파일 저장 경로 지정 (컨트롤러에서 직접 지정)
-    private final String imageDirectory = "/root/downloads/img/";
+    private final String imageDirectory = "/usr/downloads/img/";
     
 	
 //////////////////////////////////////////////////////////////////////////////포스팅관련
