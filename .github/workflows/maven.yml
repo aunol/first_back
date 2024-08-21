@@ -1,0 +1,41 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: CI/CD Pipeline for Maven Project
+
+# 이 워크플로우는 main 브랜치에 푸시될 때마다 실행됩니다.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    # 이 작업은 Ubuntu 최신 버전에서 실행됩니다.
+    runs-on: ubuntu-latest
+
+    steps:
+    # 첫 번째 단계: 리포지토리의 코드를 체크아웃합니다.
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    # 두 번째 단계: Docker Hub에 로그인합니다.
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    # 세 번째 단계: 도커 이미지를 빌드합니다.
+    - name: Build Docker image
+      run: docker build -t aunol/spring-app:latest .
+
+    # 네 번째 단계: 빌드된 도커 이미지를 Docker Hub에 푸시합니다.
+    - name: Push Docker image to Docker Hub
+      run: docker push aunol/spring-app:latest
+
+    # 다섯 번째 단계: 컨테이너를 로컬에서 테스트로 실행 (선택사항)
+    # - name: Run Docker container
+    #   run: docker run -d -p 8080:8080 aunol/spring-app:latest
